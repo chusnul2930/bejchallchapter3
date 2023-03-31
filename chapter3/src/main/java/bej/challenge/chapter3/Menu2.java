@@ -42,15 +42,7 @@ public class Menu2 {
      */
     public String calculateMode() {
         Map<String, Integer> frequency = new HashMap<>();
-        for (List<String> row : data) {
-            for (String value : row) {
-                if (frequency.containsKey(value)) {
-                    frequency.put(value, frequency.get(value) + 1);
-                } else {
-                    frequency.put(value, 1);
-                }
-            }
-        }
+        data.forEach(row -> row.forEach(value -> frequency.merge(value, 1, Integer::sum)));
 
         int maxFrequency = 0;
         String mode = "";
@@ -86,11 +78,7 @@ public class Menu2 {
      */
     public double calculateMedian() {
         List<Double> values = new ArrayList<>();
-        for (List<String> row : data) {
-            for (String value : row) {
-                values.add(Double.parseDouble(value));
-            }
-        }
+        data.forEach(row -> row.forEach(value -> values.add(Double.parseDouble(value))));
         Collections.sort(values);
         int size = values.size();
         if (size % 2 == 0) {

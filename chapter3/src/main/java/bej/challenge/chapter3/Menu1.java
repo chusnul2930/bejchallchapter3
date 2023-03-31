@@ -22,9 +22,11 @@ public class Menu1 {
 
     /**
      * Method to read csv
+     *
+     * @return
      * @throws IOException for error handling
      */
-    public void readCsv() throws IOException {
+    public List<List<String>> readCsv() throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(csvFileName));
         String line = reader.readLine();
         while (line != null) {
@@ -34,6 +36,7 @@ public class Menu1 {
             line = reader.readLine();
         }
         reader.close();
+        return null;
     }
 
     public Map<String, Integer> calculateFrequency() {
@@ -149,4 +152,8 @@ public class Menu1 {
 
         return true;
     }
+
+//    public List<List<String>> getData() {
+//        return getData();
+//    }
 }

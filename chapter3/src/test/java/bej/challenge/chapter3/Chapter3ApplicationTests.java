@@ -10,8 +10,4 @@ class Chapter3ApplicationTests {
 	void contextLoads() {
 	}
 
-	@Test
-	void Main() {
-	}
-
 }
