@@ -83,4 +83,5 @@ public class MainTest {
         assertFalse(menu1File.exists());
         assertFalse(menu2File.exists());
     }
+
 }

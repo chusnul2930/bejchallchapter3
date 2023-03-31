@@ -41,15 +41,7 @@ public class Menu1 {
 
     public Map<String, Integer> calculateFrequency() {
         Map<String, Integer> frequencyMap = new HashMap<>();
-        for (List<String> row : data) {
-            for (String value : row) {
-                if (frequencyMap.containsKey(value)) {
-                    frequencyMap.put(value + "  ", frequencyMap.get("   " + value + "\n") + 1);
-                } else {
-                    frequencyMap.put(value + "      ", 1);
-                }
-            }
-        }
+        data.forEach(row -> row.forEach(value -> frequencyMap.merge(value, 1, Integer::sum)));
         return frequencyMap;
     }
 
@@ -58,33 +50,11 @@ public class Menu1 {
      * Method to sort csv by frequency
      */
     public void sortDataByFrequency() {
-        Map<String, Integer> freqMap = new HashMap<>();
-        for (List<String> row : data) {
-            for (String value : row) {
-                if (freqMap.containsKey(value)) {
-                    freqMap.put(value, freqMap.get(value) + 1);
-                } else {
-                    freqMap.put(value, 1);
-                }
-            }
-        }
-
-        /**
-         * Implement method compare from interface Comparator
-         *
-         */
-        Collections.sort(data, new Comparator<List<String>>() {
-            public int compare(List<String> list1, List<String> list2) {
-                int freq1 = 0;
-                int freq2 = 0;
-                for (String value : list1) {
-                    freq1 += freqMap.get(value);
-                }
-                for (String value : list2) {
-                    freq2 += freqMap.get(value);
-                }
-                return Integer.compare(freq2, freq1);
-            }
+        Map<String, Integer> freqMap = calculateFrequency();
+        Collections.sort(data, (list1, list2) -> {
+            int freq1 = list1.stream().mapToInt(freqMap::get).sum();
+            int freq2 = list2.stream().mapToInt(freqMap::get).sum();
+            return Integer.compare(freq2, freq1);
         });
     }
 
@@ -93,16 +63,7 @@ public class Menu1 {
      * @return mode
      */
     public String calculateMode() {
-        Map<String, Integer> freqMap = new HashMap<>();
-        for (List<String> row : data) {
-            for (String value : row) {
-                if (freqMap.containsKey(value)) {
-                    freqMap.put(value, freqMap.get(value) + 1);
-                } else {
-                    freqMap.put(value, 1);
-                }
-            }
-        }
+        Map<String, Integer> freqMap = calculateFrequency();
         String mode = null;
         int maxFreq = 0;
         for (Map.Entry<String, Integer> entry : freqMap.entrySet()) {

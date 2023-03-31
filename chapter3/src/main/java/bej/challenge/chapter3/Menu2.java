@@ -5,7 +5,7 @@ import java.util.*;
 
 public class Menu2 {
     // field with final and private modifier, part of implementing Encapsulation.
-    private final List<List<String>> data;
+    private List<List<String>> data;
     private final String csvFileName;
     private final String txtFileName;
 
@@ -101,9 +101,9 @@ public class Menu2 {
         writer.write("Berikut hasil pengolahan nilai :");
         writer.newLine();
         writer.newLine();
-        writer.write("Berikut hail sebaran data nilai");
+        writer.write("Berikut hasil sebaran data nilai");
         writer.newLine();
-        writer.write("Mode      : " + mode);
+        writer.write("Modus      : " + mode);
         writer.newLine();
         writer.write("Average   : " + average);
         writer.newLine();
@@ -129,4 +129,13 @@ public class Menu2 {
 
         return true;
     }
+
+    public List<List<String>> getData() {
+        return data;
+    }
+
+    public void setData(List<List<String>> data) {
+        this.data = data;
+    }
+
 }

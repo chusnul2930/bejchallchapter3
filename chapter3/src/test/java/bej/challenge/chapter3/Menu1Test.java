@@ -66,4 +66,5 @@ public class Menu1Test {
         csvProcessor.calculateFrequency();
         csvProcessor.writeModeToFile();
     }
+
 }
